@@ -13,22 +13,33 @@ public class Estoque implements Controle {
         System.out.println("Livro doado: " + livro.getTitulo() + "livro doado por " + doador.getNome());
     }
 
+	//classe interna para o tratamento de exceção.
+	public class LivroIndisponivelException extends Exception {
+        public LivroIndisponivelException(String mensagem) {
+            super(mensagem);
+        }
+    }
+	
     // Implementação do método emprestar da interface Controle
     @Override
     public void emprestar(Item livro, Pessoa empresta) {
-        if (livro.isEmprestado()) {
-            System.out.println("Livro já emprestado.");
-        } else {
-            livro.setEmprestado(true);
-            System.out.println("Livro emprestado: " + livro.getTitulo() + " - Empréstimo para: " + empresta.getNome());
+        try {
+            if (livro.isEmprestado()) {
+                throw new LivroIndisponivelException("Livro já emprestado.");
+            } else {
+                livro.setEmprestado(true);
+                System.out.println("Livro emprestado: " + livro.getTitulo() + " - Empréstimo para: " + empresta.getNome());
+            }
+        } catch (LivroIndisponivelException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    // Implementação do método devolver da interface Controle
+    // Implementação do metodo devolver da interface Controle
     @Override
     public void devolver(Item livro, Pessoa empresta) {
         if (!livro.isEmprestado()) {
-            System.out.println("Livro não estava emprestado.");
+            System.out.println("Livro nÃ£o estava emprestado.");
         } else {
             livro.setEmprestado(false);
             Atraso = contadorDias - 7; // Verifica se houve atraso na devolução
