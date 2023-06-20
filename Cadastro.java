@@ -6,16 +6,27 @@ import java.util.ArrayList;
 public class Cadastro {
 
 	private ArrayList<Pessoa> pessoa = new ArrayList<>();
+	
+	//classe interna para o tratamento de exceção.
+	  public class MultaEmprestimoException extends Exception {
+	        public MultaEmprestimoException(String message) {
+	            super(message);
+	        }
+	    }
     
-    public void pagarMulta(Pessoa empresta) {
-        double multa = empresta.getMulta();
-        if (multa >= 0) {
-            empresta.setMulta(0);
-            System.out.println("Multa paga por: " + empresta.getNome() + ". Valor pago: R$ " + multa);
-        } else {
-            System.out.println("Não há multa a ser paga para: " + empresta.getNome());
-        }
-    }
+	  public void pagarMulta(Pessoa empresta) {
+		    try {
+		        double multa = empresta.getMulta();
+		        if (multa > 0) {
+		            empresta.setMulta(0);
+		            System.out.println("Multa paga por: " + empresta.getNome() + ". Valor pago: R$ " + multa);
+		        } else {
+		            System.out.println("Não há multa a ser paga para: " + empresta.getNome());
+		        }
+		    } catch (MultaEmprestimoException e) {
+		        System.out.println(e.getMessage());
+		    }
+		}
     
     public void AdicionarPessoa(Pessoa newpessoa) {
     	pessoa.add(newpessoa);
@@ -31,7 +42,7 @@ public class Cadastro {
     			pessoa.get(i).setTelefone(telefone);
     			pessoa.get(i).setEmail(email);
     		}else {
-    			System.out.println("emprestante não encontrado");
+    			System.out.println("emprestante nÃ£o encontrado");
     		}
     	}
     	
@@ -42,7 +53,7 @@ public class Cadastro {
     		if(pessoa.get(i).getNome().equals(nome)) {
     			pessoa.remove(i);
     		}else {
-    			System.out.println("emprestante não encontrado");
+    			System.out.println("emprestante nÃ£o encontrado");
 
     		}
     	}
