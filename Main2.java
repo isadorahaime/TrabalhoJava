@@ -10,24 +10,24 @@ public class Main {
 
         do {
             System.out.println("----- MENU -----");
-            System.out.print("Escolha uma opÁ„o: ");
+            System.out.print("Escolha uma op√ß√£o: ");
             System.out.println("1. Inserir Livro"); 
             System.out.println("2. Inserir emprestante"); 
             System.out.println("3. Inserir Livro na Biblioteca");
             System.out.println("4. Editar Livro");
-            System.out.println("5. Editar Usu·rio");
+            System.out.println("5. Editar Usu√°rio");
             System.out.println("6. Emprestar Livro");
             System.out.println("7. Devolver Livro");
             System.out.println("8. Excluir Livro");
             System.out.println("9. Excluir artigo");
-            System.out.println("10. Excluir Usu·rio");
+            System.out.println("10. Excluir Usu√°rio");
             System.out.println("11. Exibir Livros do estoque");
             System.out.print("12. Exibir artigos do estoque ");
-            System.out.println("13. Exibir Usu·rios");
+            System.out.println("13. Exibir Usu√°rios");
             System.out.println("14. Sair");
-            System.out.print("Escolha uma opÁ„o: ");
+            System.out.print("Escolha uma op√ß√£o: ");
             int opcao = input.nextInt();
-
+            input.nextLine();	
 
             switch (opcao) {
             
@@ -38,6 +38,7 @@ public class Main {
                 String autorLivro = input.nextLine();
                 System.out.print("Digite o ano do livro: ");
                 int anoLivro = input.nextInt();
+                input.nextLine();
                 System.out.print("Digite a editora do livro: ");
                 String editora = input.nextLine();
                 System.out.print("Digite o genero do livro: ");
@@ -109,7 +110,7 @@ public class Main {
                     System.out.print("Saindo... ");
                     break;
                     default:
-                    System.out.print("OpÁ„o invalida");
+                    System.out.print("Op√ß√£o invalida");
                     break;
 
             }
